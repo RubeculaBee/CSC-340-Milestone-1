@@ -11,8 +11,9 @@
 #ifndef DOUBLY_LINKED_LIST_CPP
 #define DOUBLY_LINKED_LIST_CPP
 
+#include "milestone1.h"
 #include "doubly_linked_list.h"
-#include "dll_node.cpp"
+#include "dll_node.h"
  
 DoublyLinkedList::DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 DoublyLinkedList::~DoublyLinkedList()
@@ -20,20 +21,40 @@ DoublyLinkedList::~DoublyLinkedList()
 	//TODO: Make Destructor
 }
 
-bool DoublyLinkedList::isEmpty()
-{
-	//TODO: Implement
-	return true;
-}
+//TODO: Comment
+bool DoublyLinkedList::isEmpty() { return !head; }
+
 //TODO: Comment
 void DoublyLinkedList::insertAtHead(int key)
 {
-	//TODO: Implement
+	DllNode* new_node = new DllNode(key);
+	
+	if(isEmpty())
+	{
+		head = new_node;
+		tail = new_node;
+		return;
+	}
+
+	new_node->next = head;
+	head->prev = new_node;
+	head = new_node;
 }
 //TODO: Comment
 void DoublyLinkedList::insertAtTail(int key)
 {
-	//TODO: Implement
+	DllNode* new_node = new DllNode(key);
+	
+	if(isEmpty())
+	{
+		head = new_node;
+		tail = new_node;
+		return;
+	}
+	
+	new_node->prev = tail;
+	tail->next = new_node;
+	tail = new_node;
 }
 //TODO: Comment
 void DoublyLinkedList::remove(int key)
@@ -68,12 +89,26 @@ void DoublyLinkedList::clear()
 //TODO: Comment
 void DoublyLinkedList::printList()
 {
-	//TODO: Implement
+	logToFileAndConsole("\nHere are the List contents:");
+	DllNode* current = head;
+	while(current)
+	{
+		logToFileAndConsole("Node key: " + std::to_string(current->key));
+		current = current->next;
+	}
+	logToFileAndConsole("End of List");
 }
 //TODO: Comment
 void DoublyLinkedList::reversePrintList()
 {
-	//TODO: Implement
+	logToFileAndConsole("\nHere are the List contents reversed:");
+	DllNode* current = tail;
+	while(current)
+	{
+		logToFileAndConsole("Node key: " + std::to_string(current->key));
+		current = current->prev;
+	}
+	logToFileAndConsole("End of List");
 }
 
 
