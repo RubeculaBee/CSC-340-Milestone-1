@@ -80,6 +80,14 @@ void DoublyLinkedList::remove(int key)
 //TODO: Comment
 void DoublyLinkedList::removeHeaderNode()
 {
+	if(head == tail)
+	{
+		delete head;
+		head = nullptr;
+		tail = nullptr;
+		return;
+	}
+
 	head = head->next;
 	delete head->prev;
 	head->prev = nullptr;
@@ -87,6 +95,14 @@ void DoublyLinkedList::removeHeaderNode()
 //TODO: Comment
 void DoublyLinkedList::removeTailNode()
 {
+	if(head == tail)
+	{
+		delete head;
+		head = nullptr;
+		tail = nullptr;
+		return;
+	}
+
 	tail = tail->prev;
 	delete tail->next;
 	tail->next = nullptr;
@@ -94,56 +110,21 @@ void DoublyLinkedList::removeTailNode()
 //TODO: Comment
 void DoublyLinkedList::moveNodeToHead(int key)
 {
-	DllNode* current = head;
-	while(current)
-	{
-		if(current->key == key)
-		{
-			if(current == head)
-				return;
-			
-			current->prev->next = current->next;
-			if(current->next)
-				current->next->prev = current->prev;
-
-			current->prev = nullptr;
-			current->next = head;
-			head->prev = current;
-			head = current;
-
-			return;
-		}
-		current = current->next;
-	}
+	remove(key);
+	insertAtHead(key);
 }
 //TODO: Comment
 void DoublyLinkedList::moveNodeToTail(int key)
 {
-	DllNode* current = head;
-	while(current)
-	{
-		if(current->key == key)
-		{
-			if(current == tail)
-				return;
-			
-			current->next->prev = current->prev;
-			if(current->prev)
-				current->prev->next = current->next;
-
-			current->next = nullptr;
-			current->prev = tail;
-			tail->next = current;
-			tail = current;
-
-			return;
-		}
-		current = current->next;
-	}
+	remove(key);
+	insertAtTail(key);
 }
 //TODO: Comment
 void DoublyLinkedList::clear()
 {
+	if(isEmpty())
+		return;
+
 	DllNode* current = head;
 	while(current->next)
 	{
