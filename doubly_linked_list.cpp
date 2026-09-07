@@ -4,7 +4,8 @@
  *
  * Contains common operations like insertion, deletion, and movement of nodes.
  *
- * @date 09/05/2026 - initial creation and comments
+ * @date 09/05/2026 - initial creation
+ * @date 09/07/2026 - completed code 
  * @author Robin Lane
  */
 
