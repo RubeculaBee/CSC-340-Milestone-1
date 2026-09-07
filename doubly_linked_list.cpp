@@ -59,17 +59,40 @@ void DoublyLinkedList::insertAtTail(int key)
 //TODO: Comment
 void DoublyLinkedList::remove(int key)
 {
-	//TODO: Implement
+	DllNode* current = head;
+	while(current)
+	{
+		if(current->key == key)
+		{
+			if(current == head)
+				removeHeaderNode();
+			else if(current == tail)
+				removeTailNode();
+			else
+			{
+				current->prev->next = current->next;
+				current->next->prev = current->prev;
+				delete current;
+			}
+			
+			return;
+		}
+		current = current->next;
+	}
 }
 //TODO: Comment
 void DoublyLinkedList::removeHeaderNode()
 {
-	//TODO: Implement
+	head = head->next;
+	delete head->prev;
+	head->prev = nullptr;
 }
 //TODO: Comment
 void DoublyLinkedList::removeTailNode()
 {
-	//TODO: Implement
+	tail = tail->prev;
+	delete tail->next;
+	tail->next = nullptr;
 }
 //TODO: Comment
 void DoublyLinkedList::moveNodeToHead(int key)
