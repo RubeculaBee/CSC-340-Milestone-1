@@ -16,10 +16,7 @@
 #include "dll_node.h"
  
 DoublyLinkedList::DoublyLinkedList() : head(nullptr), tail(nullptr) {}
-DoublyLinkedList::~DoublyLinkedList()
-{
-	//TODO: Make Destructor
-}
+DoublyLinkedList::~DoublyLinkedList() { this->clear(); }
 
 //TODO: Comment
 bool DoublyLinkedList::isEmpty() { return !head; }
