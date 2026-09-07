@@ -97,17 +97,62 @@ void DoublyLinkedList::removeTailNode()
 //TODO: Comment
 void DoublyLinkedList::moveNodeToHead(int key)
 {
-	//TODO: Implement
+	DllNode* current = head;
+	while(current)
+	{
+		if(current->key == key)
+		{
+			if(current == head)
+				return;
+			
+			current->prev->next = current->next;
+			if(current->next)
+				current->next->prev = current->prev;
+
+			current->prev = nullptr;
+			current->next = head;
+			head->prev = current;
+			head = current;
+
+			return;
+		}
+		current = current->next;
+	}
 }
 //TODO: Comment
 void DoublyLinkedList::moveNodeToTail(int key)
 {
-	//TODO: Implement
+	DllNode* current = head;
+	while(current)
+	{
+		if(current->key == key)
+		{
+			if(current == tail)
+				return;
+			
+			current->next->prev = current->prev;
+			if(current->prev)
+				current->prev->next = current->next;
+
+			current->next = nullptr;
+			current->prev = tail;
+			tail->next = current;
+			tail = current;
+
+			return;
+		}
+		current = current->next;
+	}
 }
 //TODO: Comment
 void DoublyLinkedList::clear()
 {
-	//TODO: Implement
+	DllNode* current = head;
+	while(current->next)
+	{
+		current = current->next;
+		delete current->prev;
+	}
 }
 //TODO: Comment
 void DoublyLinkedList::printList()
