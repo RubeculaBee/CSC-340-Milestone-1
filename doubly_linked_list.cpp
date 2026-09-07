@@ -153,6 +153,9 @@ void DoublyLinkedList::clear()
 		current = current->next;
 		delete current->prev;
 	}
+	delete tail;
+	head = nullptr;
+	tail = nullptr;
 }
 //TODO: Comment
 void DoublyLinkedList::printList()
