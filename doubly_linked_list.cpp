@@ -10,9 +10,6 @@
  * @author Robin Lane
  */
 
-#ifndef DOUBLY_LINKED_LIST_CPP
-#define DOUBLY_LINKED_LIST_CPP
-
 #include "milestone1.h"
 #include "doubly_linked_list.h"
 #include "dll_node.h"
@@ -228,6 +225,3 @@ void DoublyLinkedList::reversePrintList()
 	}
 	logToFileAndConsole("End of List");
 }
-
-
-#endif
