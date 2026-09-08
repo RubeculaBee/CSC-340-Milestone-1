@@ -6,6 +6,7 @@
  *
  * @date 09/05/2026 - initial creation
  * @date 09/07/2026 - completed code 
+ * @date 09/08/2026 - Added comments
  * @author Robin Lane
  */
 
@@ -16,13 +17,25 @@
 #include "doubly_linked_list.h"
 #include "dll_node.h"
  
+// Constructor initialises an empty list
 DoublyLinkedList::DoublyLinkedList() : head(nullptr), tail(nullptr) {}
+// Destructor deletes every node using clear()
 DoublyLinkedList::~DoublyLinkedList() { this->clear(); }
 
-//TODO: Comment
+/**
+ * checks if there are any nodes in the list
+ *
+ * @param none
+ * @return true if there is at least 1 node, otherwise false
+ */
 bool DoublyLinkedList::isEmpty() { return !head; }
 
-//TODO: Comment
+/**
+ * Adds a new node at the front of the list, it becomes the new head.
+ *
+ * @param key: the value to be stored in the new node
+ * @return nothing
+ */
 void DoublyLinkedList::insertAtHead(int key)
 {
 	DllNode* new_node = new DllNode(key);
@@ -38,7 +51,13 @@ void DoublyLinkedList::insertAtHead(int key)
 	head->prev = new_node;
 	head = new_node;
 }
-//TODO: Comment
+
+/**
+ * Adds a new node at the back of the list, it becomes the new tail.
+ *
+ * @param key: the value to be stored in the new node
+ * @return nothing
+ */
 void DoublyLinkedList::insertAtTail(int key)
 {
 	DllNode* new_node = new DllNode(key);
@@ -54,7 +73,13 @@ void DoublyLinkedList::insertAtTail(int key)
 	tail->next = new_node;
 	tail = new_node;
 }
-//TODO: Comment
+
+/**
+ * Searches for a node with a specified key and removes that node.
+ *
+ * @param key: the value in the node to search for.
+ * @return nothing
+ */
 void DoublyLinkedList::remove(int key)
 {
 	DllNode* current = head;
@@ -78,7 +103,13 @@ void DoublyLinkedList::remove(int key)
 		current = current->next;
 	}
 }
-//TODO: Comment
+
+/**
+ * Removes the first node in the list
+ *
+ * @param none
+ * @return nothing
+ */
 void DoublyLinkedList::removeHeaderNode()
 {
 	if(head == tail)
@@ -93,7 +124,13 @@ void DoublyLinkedList::removeHeaderNode()
 	delete head->prev;
 	head->prev = nullptr;
 }
-//TODO: Comment
+
+/**
+ * Removes the last node in the list
+ *
+ * @param none
+ * @return nothing
+ */
 void DoublyLinkedList::removeTailNode()
 {
 	if(head == tail)
@@ -108,19 +145,38 @@ void DoublyLinkedList::removeTailNode()
 	delete tail->next;
 	tail->next = nullptr;
 }
-//TODO: Comment
+
+/**
+ * Searches for a node with a specified key and places it at the front of the list, becoming the new head.
+ *
+ * @param key: the value in the node to search for.
+ * @return nothing
+ */
 void DoublyLinkedList::moveNodeToHead(int key)
 {
 	remove(key);
 	insertAtHead(key);
 }
-//TODO: Comment
+
+/**
+ * Searches for a node with a specified key and places it at the back of the list, becoming the new tail.
+ *
+ * @param key: the value in the node to search for.
+ * @return nothing
+ */
 void DoublyLinkedList::moveNodeToTail(int key)
 {
 	remove(key);
 	insertAtTail(key);
 }
-//TODO: Comment
+
+
+/**
+ * Deletes every node in the list, making the list empty again.
+ *
+ * @param none
+ * @return nothing
+ */
 void DoublyLinkedList::clear()
 {
 	if(isEmpty())
@@ -136,7 +192,13 @@ void DoublyLinkedList::clear()
 	head = nullptr;
 	tail = nullptr;
 }
-//TODO: Comment
+
+/**
+ * Displays the value stored in each node sequentially from head to tail.
+ *
+ * @param none
+ * @return nothing
+ */
 void DoublyLinkedList::printList()
 {
 	logToFileAndConsole("\nHere are the List contents:");
@@ -148,7 +210,13 @@ void DoublyLinkedList::printList()
 	}
 	logToFileAndConsole("End of List");
 }
-//TODO: Comment
+
+/**
+ * Displays the value stored in each node sequentially from tail to head.
+ *
+ * @param none
+ * @return nothing
+ */
 void DoublyLinkedList::reversePrintList()
 {
 	logToFileAndConsole("\nHere are the List contents reversed:");
